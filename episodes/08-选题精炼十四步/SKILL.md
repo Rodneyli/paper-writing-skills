@@ -16,7 +16,7 @@ related_skills:
 
 # 选题精炼十四步法
 
-> 产线位置：第8期 · 方向工位 · 上游 [claim-vs-evidence] / 下游 [matrix-method-topic-selection]
+> 产线位置：第6期skill包附赠 · 方向工位 · 上游 [claim-vs-evidence] / 下游 [matrix-method-topic-selection]
 
 ## R — 原文 (Reading)
 

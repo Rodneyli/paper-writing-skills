@@ -20,7 +20,7 @@ related_skills:
 
 # 格雷准则研究问题筛选 (Gray's Criteria)
 
-> 产线位置：第10期 · 方向工位 · 上游 [matrix-method-topic-selection] / 下游 [research-focus-anti-guerrilla]
+> 产线位置：第6期·下 · 方向工位 · 上游 [matrix-method-topic-selection] / 下游 [research-focus-anti-guerrilla]
 
 ## R — 原文 (Reading)
 

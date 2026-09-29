@@ -19,7 +19,7 @@ related_skills:
 
 # 从笔记到主题大纲的综合转化法 (Notes-to-Outline Synthesis)
 
-> 产线位置：第12期 · 综述工位 · 上游 [research-focus-anti-guerrilla] / 下游 [annotative-vs-synthetic-writing]
+> 产线位置：第7期 · 综述工位 · 上游 [research-focus-anti-guerrilla] / 下游 [annotative-vs-synthetic-writing]
 
 ## R — 原文 (Reading)
 

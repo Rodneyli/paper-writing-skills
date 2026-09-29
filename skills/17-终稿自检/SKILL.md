@@ -21,7 +21,7 @@ related_skills:
 
 # 终稿自检
 
-> 产线位置：第17期 · 正文工位 · 上游 [ten-thirty-readability-test] / 下游 [response-to-reviewers]
+> 产线位置：第9期 · 正文工位 · 上游 [ten-thirty-readability-test] / 下游 [response-to-reviewers]
 
 ## R — 原文
 

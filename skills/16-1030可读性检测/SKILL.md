@@ -16,7 +16,7 @@ related_skills:
 
 # 10/30论文可读性检测法
 
-> 产线位置：第16期 · 正文工位 · 上游 [top-down-pyramid-writing] / 下游 [final-self-edit-checklist]
+> 产线位置：第8期 · 正文工位 · 上游 [top-down-pyramid-writing] / 下游 [final-self-edit-checklist]
 
 ## R — 原文 (Reading)
 

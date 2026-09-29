@@ -19,7 +19,7 @@ related_skills:
 
 # 电子表格文献笔记系统
 
-> 产线位置：第5期 · 精读工位 · 上游 [critical-creative-paper-reading] / 下游 [deep-article-analysis]
+> 产线位置：第4期 · 精读工位 · 上游 [critical-creative-paper-reading] / 下游 [deep-article-analysis]
 
 ## R — 原文
 

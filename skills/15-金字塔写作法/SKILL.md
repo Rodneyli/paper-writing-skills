@@ -19,7 +19,7 @@ related_skills:
 
 # 自上而下金字塔写作法
 
-> 产线位置：第15期 · 正文工位 · 上游 [blank-spots-and-future-directions] / 下游 [ten-thirty-readability-test]
+> 产线位置：第8期 · 正文工位 · 上游 [blank-spots-and-future-directions] / 下游 [ten-thirty-readability-test]
 
 ## R — 原文 (Reading)
 

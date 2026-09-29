@@ -23,7 +23,7 @@ related_skills:
 
 # 区分"论断"与"证据"的推理方法
 
-> 产线位置：第7期 · 精读工位 · 上游 [deep-article-analysis] / 下游 [topic-refinement]
+> 产线位置：第5期 · 精读工位 · 上游 [deep-article-analysis] / 下游 [topic-refinement]
 
 ## R — 原文
 

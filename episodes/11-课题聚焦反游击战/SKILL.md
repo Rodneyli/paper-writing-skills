@@ -16,7 +16,7 @@ related_skills:
 
 # 课题聚焦与游击战规避
 
-> 产线位置：第11期 · 方向工位 · 上游 [grays-criteria-problem-evaluation] / 下游 [notes-to-outline-synthesis]
+> 产线位置：第6期skill包附赠 · 方向工位 · 上游 [grays-criteria-problem-evaluation] / 下游 [notes-to-outline-synthesis]
 
 ## R — 原文 (Reading)
 

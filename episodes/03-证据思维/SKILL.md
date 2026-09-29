@@ -23,7 +23,7 @@ related_skills:
 
 # 证据思维
 
-> 产线位置：第3期 · 筛选工位 · 上游 [preread-classify-deepread] / 下游 [critical-creative-paper-reading]
+> 产线位置：并入第2期 · 筛选工位 · 上游 [preread-classify-deepread] / 下游 [critical-creative-paper-reading]
 
 ## R — 原文
 

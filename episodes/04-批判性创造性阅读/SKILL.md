@@ -19,7 +19,7 @@ related_skills:
 
 # 批判性创造性阅读论文法
 
-> 产线位置：第4期 · 精读工位 · 上游 [evidence-thinking] / 下游 [spreadsheet-note-system]
+> 产线位置：第3期 · 精读工位 · 上游 [evidence-thinking] / 下游 [spreadsheet-note-system]
 
 ## R — 原文 (Reading)
 

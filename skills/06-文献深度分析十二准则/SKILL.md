@@ -24,7 +24,7 @@ related_skills:
 
 # 文献深度分析十二准则
 
-> 产线位置：第6期 · 精读工位 · 上游 [spreadsheet-note-system] / 下游 [claim-vs-evidence]
+> 产线位置：并入第4期 · 精读工位 · 上游 [spreadsheet-note-system] / 下游 [claim-vs-evidence]
 
 ## R — 原文
 

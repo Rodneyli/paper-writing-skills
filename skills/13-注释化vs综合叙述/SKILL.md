@@ -15,7 +15,7 @@ related_skills:
 
 # "注释化表述"与"综合叙述"的区分 (Annotative vs Synthetic Writing)
 
-> 产线位置：第13期 · 综述工位 · 上游 [notes-to-outline-synthesis] / 下游 [blank-spots-and-future-directions]
+> 产线位置：第7期 · 综述工位 · 上游 [notes-to-outline-synthesis] / 下游 [blank-spots-and-future-directions]
 
 ## R — 原文 (Reading)
 

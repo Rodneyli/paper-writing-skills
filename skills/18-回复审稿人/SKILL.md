@@ -20,7 +20,7 @@ related_skills:
 
 # 回复审稿人
 
-> 产线位置：第18期 · 投稿返修工位 · 上游 [final-self-edit-checklist] / 下游 [无（产线终点）]
+> 产线位置：第9期 · 投稿返修工位 · 上游 [final-self-edit-checklist] / 下游 [无（产线终点）]
 
 ## R — 原文
 

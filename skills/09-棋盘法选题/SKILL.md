@@ -18,7 +18,7 @@ related_skills:
 
 # 棋盘法选题定位
 
-> 产线位置：第9期 · 方向工位 · 上游 [topic-refinement] / 下游 [grays-criteria-problem-evaluation]
+> 产线位置：第6期·上 · 方向工位 · 上游 [topic-refinement] / 下游 [grays-criteria-problem-evaluation]
 
 ## R — 原文 (Reading)
 

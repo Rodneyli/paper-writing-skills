@@ -18,7 +18,7 @@ related_skills:
 
 # 指出空白点和未来研究方向的方法论 (Blank Spots and Future Directions)
 
-> 产线位置：第14期 · 综述工位 · 上游 [annotative-vs-synthetic-writing] / 下游 [top-down-pyramid-writing]
+> 产线位置：第7期 · 综述工位 · 上游 [annotative-vs-synthetic-writing] / 下游 [top-down-pyramid-writing]
 
 ## R — 原文 (Reading)
 
