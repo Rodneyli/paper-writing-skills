@@ -52,11 +52,11 @@
 | 文件 | 类型 | 状态 | 调度Skill | 说明 |
 |------|------|------|-----------|------|
 | 01_口播稿.md | 必选 | ✅ v3定稿（`03_口播稿_v3.md`，259字/72s，强调AI分工） | — | 短打型75s |
-| 02_封面.png | 必选 | ✅ 定稿（`09_定稿/封面-第1期-定稿.png`，1728×2304，插图HTML拼装+模式C品牌栏） | xhs-cover-design → image_generate → cover-brand-bar | 三步流程完成 |
-| 03_发布物料.md | 必选 | ✅ 定稿（`09_定稿/03_发布物料.md`，主标题23字符经headline-evaluator评估18/20） | headline-evaluator | 2026-09-15定稿 |
-| slides.html | 必选 | ✅ 定稿（`09_定稿/slides.html`，9页3:4竖版，4张概念配图v6嵌入） | frontend-slides + lee-concept-illustrations | 巨物+小人比例反差构图 |
-| skill压缩包 | 必选 | ✅ 打包（`09_定稿/preread-classify-deepread-skill.zip`，SKILL.md+test-prompts.json） | — | 评论区回Skill自取 |
-| 发布物料总包 | 必选 | ✅ `09_定稿/第1期发布物料包.zip`（4.5MB，口播稿+封面+slides+配图+发布物料+skill包） | — | 待Rod发布 |
+| 02_封面.png | 必选 | ✅ 定稿（`定稿/封面-第1期-定稿.png`，1728×2304，插图HTML拼装+模式C品牌栏） | xhs-cover-design → image_generate → cover-brand-bar | 三步流程完成 |
+| 03_发布物料.md | 必选 | ✅ 定稿（`定稿/03_发布物料.md`，主标题23字符经headline-evaluator评估18/20） | headline-evaluator | 2026-09-15定稿 |
+| slides.html | 必选 | ✅ 定稿（`定稿/slides.html`，9页3:4竖版，4张概念配图v6嵌入） | frontend-slides + lee-concept-illustrations | 巨物+小人比例反差构图 |
+| skill压缩包 | 必选 | ✅ 打包（`定稿/preread-classify-deepread-skill.zip`，SKILL.md+test-prompts.json） | — | 评论区回Skill自取 |
+| 发布物料总包 | 必选 | ✅ `定稿/第1期发布物料包.zip`（4.5MB，口播稿+封面+slides+配图+发布物料+skill包） | — | 待Rod发布 |
 | references/爆款调研 | 参考 | ✅ `爆款调研-AI批量筛论文-20260814.md` | hot-content-research | 已入库 |
 
 ## 关键数据速查
