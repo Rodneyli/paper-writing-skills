@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>风格预览 · 暗色学术风</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0a0a; }
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+.deck-stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; flex-shrink: 0; }
+.slide { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; }
+/* 暗色学术风 Wildcard */
+.wildcard { background: #0a0a0a; }
+/* 网格背景 */
+.wildcard::before { content: ''; position: absolute; inset: 0; background-image: 
+  linear-gradient(rgba(232,93,38,0.04) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(232,93,38,0.04) 1px, transparent 1px);
+  background-size: 60px 60px; }
+/* 装饰性品牌橙角标 */
+.wildcard .corner-accent { position: absolute; top: 0; right: 0; width: 300px; height: 300px; background: radial-gradient(circle at 100% 0%, rgba(232,93,38,0.15) 0%, transparent 70%); }
+.wildcard .corner-accent-bl { position: absolute; bottom: 0; left: 0; width: 400px; height: 400px; background: radial-gradient(circle at 0% 100%, rgba(232,93,38,0.08) 0%, transparent 70%); }
+/* 品牌栏 */
+.wildcard .brand-bar { position: absolute; top: 0; left: 0; right: 0; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; border-bottom: 1px solid rgba(232,93,38,0.2); }
+.wildcard .brand-name { font-family: 'Space Grotesk', sans-serif; font-size: 16px; color: rgba(255,255,255,0.7); letter-spacing: 1px; }
+.wildcard .brand-name em { color: #E85D26; font-style: normal; font-weight: 600; }
+.wildcard .brand-tag { font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 2px; }
+/* 主内容区 */
+.wildcard .main { position: absolute; left: 80px; right: 80px; top: 50%; transform: translateY(-60%); }
+.wildcard .pill { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #E85D26; border: 1px solid rgba(232,93,38,0.4); border-radius: 20px; padding: 6px 18px; letter-spacing: 2px; margin-bottom: 32px; }
+.wildcard .title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 88px; color: #fff; line-height: 1.12; letter-spacing: -2px; }
+.wildcard .title .highlight { color: #E85D26; }
+.wildcard .sub { font-family: 'Space Grotesk', sans-serif; font-size: 28px; color: rgba(255,255,255,0.5); margin-top: 28px; letter-spacing: -0.5px; }
+.wildcard .sub span { color: rgba(232,93,38,0.8); font-weight: 500; }
+/* 底部 */
+.wildcard .footer { position: absolute; bottom: 32px; left: 48px; right: 48px; display: flex; justify-content: space-between; align-items: center; }
+.wildcard .footer .left { font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: rgba(255,255,255,0.25); }
+.wildcard .footer .right { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 1px; }
+.wildcard .footer .right span { color: #E85D26; }
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono&display=swap');
+</style>
+</head>
+<body>
+<div class="deck-viewport">
+  <div class="deck-stage">
+    <div class="slide wildcard">
+      <div class="corner-accent"></div>
+      <div class="corner-accent-bl"></div>
+      <div class="brand-bar">
+        <div class="brand-name">和Lee一起学AI <em>·</em> 学得懂，用得上</div>
+        <div class="brand-tag">🦉 每天读懂一篇论文</div>
+      </div>
+      <div class="main">
+        <div class="pill">批判性创造性阅读 · 第1期</div>
+        <div class="title">1个Skill<br>AI帮你<span class="highlight">榨干</span>一篇论文</div>
+        <div class="sub"><span>30%</span> 读 · <span>70%</span> 想</div>
+      </div>
+      <div class="footer">
+        <div class="left">论文写作Skills分享系列</div>
+        <div class="right">CRITICAL <span>✦</span> CREATIVE</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){var s=document.querySelector('.deck-stage'),v=document.querySelector('.deck-viewport');function r(){var w=v.clientWidth,h=v.clientHeight,sx=w/1920,sy=h/1080,sc=Math.min(sx,sy);s.style.transform='translate('+(w-1920*sc)/2+'px,'+(h-1080*sc)/2+'px) scale('+sc+')';}window.addEventListener('resize',r);r();})();
+</script>
+</body>
+</html>

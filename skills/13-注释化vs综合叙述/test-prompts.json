@@ -1,0 +1,86 @@
+{
+  "skill": "annotative-vs-synthetic-writing",
+  "version": "0.1.0",
+  "source_book": "《文献综述写作》— 何塞·L.加尔万 梅丽莎·C.加尔万",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我的文献综述每段都以'Smith(2020)发现……''Chen(2021)认为……'开头，朋友说读起来像流水账。怎么改？",
+      "expected_behavior": "应激活本 skill，先执行逐段主题句串联测试进行诊断，然后按'主题驱动'原则改写——确定每段的主题点，把多篇文献作为证据整合进来，而非每篇各起一段。",
+      "notes": "最典型的触发场景（A2-1 + 语言信号'每段以作者名开头''像流水账'）。"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "导师给我的综述批注是'这更像 annotated bibliography，不是 literature review'。我不太懂这两者到底有什么区别，怎么改写？",
+      "expected_behavior": "应激活本 skill，先解释注释化表述与综合叙述的核心区别（用书中法农案例），然后对用户稿件做诊断并给出改写对照。",
+      "notes": "触发自 A2-2 + 语言信号'annotated bibliography'。用户不仅需要诊断，还需要理解概念区别。"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "想在一个段落里引用多篇文章来支撑同一个观点，但写出来就成了'A说X，B说Y，C认为Z'的排列，怎么才能把它们真正融合在一起？",
+      "expected_behavior": "应激活本 skill，展示多来源整合段落的写法——以主题句引领，引用嵌入到论证中而非主导论证，参照例11.4.1法农案例的写作模式。",
+      "notes": "触发自 A2-4 + 语言信号'怎么在一个段落里引用多篇文章'。"
+    },
+    {
+      "id": "should-trigger-04",
+      "type": "should_trigger",
+      "prompt": "写综述时感觉段与段之间没有联系，每段是独立的，读完全文不知道这些段落放在一起到底要论证什么。",
+      "expected_behavior": "应激活本 skill，执行连贯性诊断：检查路线图、范围声明、观点表达、子标题和过渡词——六条连贯性准则逐条过。",
+      "notes": "触发自 A2-3 + 语言信号'段与段之间没有连贯性'。需要的是完整连贯性诊断，不只是注释化。"
+    },
+    {
+      "id": "should-trigger-05",
+      "type": "should_trigger",
+      "prompt": "我不知道综述的导言应该怎么写——需不需要先概括我的总体观点？还是直接开始介绍文献就行？",
+      "expected_behavior": "应激活本 skill，重点执行步骤2和4：帮用户起草路线图 + 明确表达总体观点（准则一和三）。告诉用户观点应该在读完全部文献后形成，但在写作时放在开头表达。",
+      "notes": "触发自 A2-5 + 语言信号'综述的导言应该怎么写''我不知道怎么表达我的观点'。"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "我还没开始写综述，刚做完文献分析，想知道写初稿之前应该先做什么。",
+      "expected_behavior": "不应激活本 skill。用户还没有草稿，注释化诊断需要实际文本。应先调用 notes-to-outline-synthesis 建立大纲并写初稿。",
+      "notes": "B 段边界：'用户还没有写出任何草稿——此时用户应先调用 notes-to-outline-synthesis 建立大纲、然后写初稿。注释化诊断需要实际文本。'"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "帮我润色这段话，看看语法和措辞有没有问题：'The present study aims to investigate the relationship between social media use and sleep quality among college students.'",
+      "expected_behavior": "不应激活本 skill。这是文本编辑/润色请求，用户的表述不是注释化问题，只是要检查语法措辞。应调用编辑润色类 skill。",
+      "notes": "B 段边界 + description 的 NOT trigger：'帮我润色这段话'是文本编辑，不是结构诊断。也印证B段：'已经是高质量综合叙述，只需微调措辞'。"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "我的作业要求是写 critical annotated bibliography，每篇文章单独写一段评论。我这样写了几段，帮我看看每段评论够不够深入。",
+      "expected_behavior": "不应激活本 skill。用户明确表示作业格式是'critical annotated bibliography'，逐篇讨论是规定的文体要求，不是注释化问题。",
+      "notes": "B 段明确排除：'用户的综述确实是要求按逐篇讨论的格式写的（如某些学科的critical annotated bibliography作业）——这不是注释化，而是不同的文体要求。'"
+    },
+    {
+      "id": "edge-case-01",
+      "type": "edge_case",
+      "prompt": "我写了一半的综述草稿——引言和前三节是按主题组织的，但后面两节不知不觉又变成'A作者说……B作者说……'的模式了。怎么修正后半段？",
+      "expected_behavior": "边界情况：草稿不完整，部分章节是综合叙述、部分是注释化。应激活本 skill 但只对注释化的那部分做诊断和改写，不需要走完整六步流程。",
+      "notes": "介于'没有草稿'（不触发）和'有完整草稿需要全文诊断'（触发）之间。半成品应触发但缩小诊断范围。"
+    },
+    {
+      "id": "edge-case-02",
+      "type": "edge_case",
+      "prompt": "我把初稿改了一遍——把原来以作者名开头的段落都改成了主题句开头——但导师说'虽然不像流水账了，但段落之间的关系还是不清楚'。我还能怎么改？",
+      "expected_behavior": "边界情况：用户已完成注释化的表层修复但连贯性仍不足。应激活本 skill 但重点不在步骤3（改写注释化），而在步骤2-5-6：检查路线图、子标题设计、整体连贯性验证。",
+      "notes": "这是A2-1的延展——用户已做初步改写但问题上升到更高层（段落间连贯性），需要六条准则中除准则四以外的其他准则。"
+    },
+    {
+      "id": "edge-case-03",
+      "type": "edge_case",
+      "prompt": "我用ChatGPT帮我写了一版综述初稿，看起来段落之间整合了多篇文章，但我自己读不出这些文献之间的联系是不是真的存在，也不敢确定引用的准确性。怎么判断这版稿子是不是'伪综合'？",
+      "expected_behavior": "边界情况：AI生成的稿件，表面看起来很'综合'但可能把不相关文献硬凑。应激活本 skill 但增加额外诊断：验证AI引用的每篇文献是否真的在讨论同一个主题点，检查是否存在'把不同子领域的文献嫁接'的情况。",
+      "notes": "B段作者盲点：'在ChatGPT时代，学生可能用AI生成的伪综合段落——看起来整合了多篇文章但实际上AI并不理解学科内部的争论脉络'。需要额外步骤验证引用的真实性和逻辑关联。"
+    }
+  ],
+  "minimum_pass_rate": 0.8
+}

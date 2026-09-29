@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>风格预览 · Broadside</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #111; }
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: #111; display: flex; align-items: center; justify-content: center; }
+.deck-stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; flex-shrink: 0; background: #111; }
+.slide { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; }
+/* Broadside */
+.broadside { background: #111; }
+.broadside .top-line { width: 100%; height: 1px; background: #282826; position: absolute; top: 80px; }
+.broadside .bottom-line { width: 100%; height: 1px; background: #282826; position: absolute; bottom: 80px; }
+.broadside .brand { position: absolute; top: 28px; left: 60px; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #888880; letter-spacing: 2px; }
+.broadside .brand em { color: #E85D26; font-style: normal; }
+.broadside .slogan { position: absolute; top: 28px; right: 60px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #505048; letter-spacing: 1px; }
+.broadside .content { position: absolute; left: 60px; top: 50%; transform: translateY(-50%); }
+.broadside .label { font-family: 'IBM Plex Mono', monospace; font-size: 16px; color: #E85D26; letter-spacing: 4px; margin-bottom: 24px; }
+.broadside .display { font-family: 'Barlow', sans-serif; font-weight: 900; font-size: 120px; color: #F0ECE5; line-height: 1.05; text-transform: none; letter-spacing: -2px; }
+.broadside .display .highlight { color: #E85D26; }
+.broadside .subline { font-family: 'Barlow', sans-serif; font-size: 48px; font-weight: 400; color: #888880; margin-top: 24px; letter-spacing: -1px; }
+.broadside .ornament { position: absolute; right: 60px; bottom: 100px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #505048; letter-spacing: 2px; }
+.broadside .ornament span { color: #E85D26; }
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;900&family=IBM+Plex+Mono&display=swap');
+</style>
+</head>
+<body>
+<div class="deck-viewport">
+  <div class="deck-stage">
+    <div class="slide broadside">
+      <div class="top-line"></div>
+      <div class="bottom-line"></div>
+      <div class="brand">和Lee一起学AI <em>·</em> 学得懂，用得上</div>
+      <div class="slogan">🦉 每天读懂一篇论文</div>
+      <div class="content">
+        <div class="label">批判性创造性阅读 · 第1期</div>
+        <div class="display">1个Skill<br>AI帮你<span class="highlight">榨干</span>一篇论文</div>
+        <div class="subline">30%读 · 70%想</div>
+      </div>
+      <div class="ornament">CRITICAL <span>✦</span> CREATIVE</div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){var s=document.querySelector('.deck-stage'),v=document.querySelector('.deck-viewport');function r(){var w=v.clientWidth,h=v.clientHeight,sx=w/1920,sy=h/1080,sc=Math.min(sx,sy);s.style.transform='translate('+(w-1920*sc)/2+'px,'+(h-1080*sc)/2+'px) scale('+sc+')';}window.addEventListener('resize',r);r();})();
+</script>
+</body>
+</html>

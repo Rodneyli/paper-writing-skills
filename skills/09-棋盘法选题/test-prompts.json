@@ -1,0 +1,44 @@
+[
+  {
+    "prompt": "我是NLP博士生，感觉所有方向都被人做过了，怎么找到新的研究课题？",
+    "expected": "should_trigger",
+    "expected_skill": "matrix-method-topic-selection",
+    "reason": "用户明确在寻找研究课题，棋盘法可以系统性地帮助发现创新点组合"
+  },
+  {
+    "prompt": "我想在推荐系统领域发论文，但不知道具体做什么题目好，有没有什么方法论？",
+    "expected": "should_trigger",
+    "expected_skill": "matrix-method-topic-selection",
+    "reason": "用户在特定领域寻找论文题目，属于棋盘法选题的典型应用场景"
+  },
+  {
+    "prompt": "怎么才能找到研究方向的创新点？感觉自己总是在跟着别人的工作做。",
+    "expected": "should_trigger",
+    "expected_skill": "matrix-method-topic-selection",
+    "reason": "用户的本质需求是找到创新方法而非评估或阅读，棋盘法最直接回应这个问题"
+  },
+  {
+    "prompt": "帮我润色一下这段论文的引言，语言不够学术化。",
+    "expected": "should_not_trigger",
+    "expected_skill": "matrix-method-topic-selection",
+    "reason": "这是文字润色任务，与选题方法论完全无关，应交给写作类 skill 处理"
+  },
+  {
+    "prompt": "这个实验的 hyperparameter 怎么调比较好？试了几组都不收敛。",
+    "expected": "should_not_trigger",
+    "expected_skill": "matrix-method-topic-selection",
+    "reason": "纯技术实验调参问题，不涉及研究选题的发现或定位"
+  },
+  {
+    "prompt": "我感觉研究做到瓶颈了，不知道该往哪个方向突破。",
+    "expected": "boundary",
+    "expected_skill": "matrix-method-topic-selection",
+    "reason": "可能是选题枯竭（应触发），也可能是实验方法卡住（不应触发），需进一步确认"
+  },
+  {
+    "prompt": "我读了大量论文但不知道下一步该做什么，有没有框架帮我把零散的想法系统化？",
+    "expected": "should_trigger",
+    "expected_skill": "matrix-method-topic-selection",
+    "reason": "用户需要将零散想法系统化为研究课题，棋盘法的二维矩阵框架正好适用"
+  }
+]

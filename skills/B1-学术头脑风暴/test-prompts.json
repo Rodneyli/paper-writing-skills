@@ -1,0 +1,50 @@
+[
+  {
+    "prompt": "我们组会每次都是轮流汇报进度，感觉很无聊，怎么才能产生真正的新想法？",
+    "expected": "should_trigger",
+    "expected_skill": "academic-brainstorming-ideation",
+    "reason": "组会沦为进度汇报会是学术头脑风暴法的核心触发场景"
+  },
+  {
+    "prompt": "我和导师讨论论文，总是他说什么我点头，没什么火花，怎么破？",
+    "expected": "should_trigger",
+    "expected_skill": "academic-brainstorming-ideation",
+    "reason": "讨论缺乏火花的多人互动场景，需要结构化头脑风暴方法"
+  },
+  {
+    "prompt": "怎么组织有效的学术讨论？大家读完论文都说'挺好的，没什么问题'",
+    "expected": "should_trigger",
+    "expected_skill": "academic-brainstorming-ideation",
+    "reason": "讨论产出匮乏的典型信号，延迟揭示答案法可以打破锚定效应"
+  },
+  {
+    "prompt": "导师想训练学生独立思考能力，但不知道怎么设计有效的讨论环节",
+    "expected": "should_trigger",
+    "expected_skill": "academic-brainstorming-ideation",
+    "reason": "导师需要可操作的方法训练学生独立思考，是学术头脑风暴法的核心应用场景"
+  },
+  {
+    "prompt": "我一个人怎么产生研究想法？有没有什么方法论？",
+    "expected": "should_not_trigger",
+    "expected_skill": "academic-brainstorming-ideation",
+    "reason": "单人场景应触发批判性创造性阅读法(v03)，学术头脑风暴法需要至少2人"
+  },
+  {
+    "prompt": "读了很多论文，但不知道怎么从阅读中提炼自己的研究方向",
+    "expected": "should_not_trigger",
+    "expected_skill": "academic-brainstorming-ideation",
+    "reason": "单人阅读后产生灵感应触发批判性创造性阅读法(v03)，不是头脑风暴法"
+  },
+  {
+    "prompt": "每周组会不知道讲什么，感觉每个人都在应付",
+    "expected": "boundary",
+    "expected_skill": "academic-brainstorming-ideation",
+    "reason": "边界模糊：可能是组会形式需要头脑风暴法，也可能是个人的选题准备不足"
+  },
+  {
+    "prompt": "我觉得讨论没什么用，还不如自己多读几篇论文",
+    "expected": "boundary",
+    "expected_skill": "academic-brainstorming-ideation",
+    "reason": "边界模糊：对讨论效果的质疑需评估是方法问题(触发头脑风暴法)还是参与意愿问题"
+  }
+]

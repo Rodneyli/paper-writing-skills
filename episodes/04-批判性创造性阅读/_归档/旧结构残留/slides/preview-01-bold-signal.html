@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>风格预览 · Bold Signal</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: #000; display: flex; align-items: center; justify-content: center; }
+.deck-stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; flex-shrink: 0; background: #1a1a1a; }
+.slide { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; }
+/* Bold Signal */
+.bold-signal { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%); }
+.bold-signal .card { position: absolute; width: 1200px; height: 640px; background: #E85D26; border-radius: 24px; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; justify-content: center; padding: 80px 100px; }
+.bold-signal .number { position: absolute; top: 40px; left: 40px; font-family: 'Archivo Black', sans-serif; font-size: 48px; color: rgba(255,255,255,0.15); letter-spacing: 4px; }
+.bold-signal .breadcrumb { position: absolute; top: 48px; right: 48px; font-family: 'Space Grotesk', sans-serif; font-size: 16px; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+.bold-signal .breadcrumb span { opacity: 0.3; margin: 0 6px; }
+.bold-signal .breadcrumb .active { opacity: 1; }
+.bold-signal .brand { position: absolute; bottom: 40px; left: 40px; font-family: 'Space Grotesk', sans-serif; font-size: 18px; color: rgba(255,255,255,0.5); }
+.bold-signal .brand span { color: #E85D26; }
+.bold-signal .tagline { position: absolute; bottom: 40px; right: 40px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: rgba(255,255,255,0.3); text-align: right; }
+.bold-signal .card .label { font-family: 'Space Grotesk', sans-serif; font-size: 20px; color: rgba(26,26,26,0.7); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; }
+.bold-signal .card .title { font-family: 'Archivo Black', sans-serif; font-size: 72px; color: #1a1a1a; line-height: 1.15; letter-spacing: -1px; }
+.bold-signal .card .subtitle { font-family: 'Space Grotesk', sans-serif; font-size: 28px; color: rgba(26,26,26,0.8); margin-top: 24px; }
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500&display=swap');
+</style>
+</head>
+<body>
+<div class="deck-viewport">
+  <div class="deck-stage">
+    <div class="slide bold-signal">
+      <div class="number">01</div>
+      <div class="breadcrumb">
+        <span>CRITICAL</span> <span>·</span> <span class="active">CREATIVE</span>
+      </div>
+      <div class="card">
+        <div class="label">批判性创造性阅读 · 第1期</div>
+        <div class="title">1个Skill<br>AI帮你榨干一篇论文</div>
+        <div class="subtitle">30%读 · 70%想</div>
+      </div>
+      <div class="brand">和Lee一起学AI <span>·</span> 学得懂，用得上</div>
+      <div class="tagline">🦉 每天读懂一篇论文</div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){var s=document.querySelector('.deck-stage'),v=document.querySelector('.deck-viewport');function r(){var w=v.clientWidth,h=v.clientHeight,sx=w/1920,sy=h/1080,sc=Math.min(sx,sy);s.style.transform='translate('+(w-1920*sc)/2+'px,'+(h-1080*sc)/2+'px) scale('+sc+')';}window.addEventListener('resize',r);r();})();
+</script>
+</body>
+</html>

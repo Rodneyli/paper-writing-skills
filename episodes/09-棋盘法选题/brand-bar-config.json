@@ -1,0 +1,9 @@
+{
+  "image": "/app/data/所有对话/主对话/imgs/260727_17_生图/cover02_v2.jpg",
+  "output": "/app/data/所有对话/主对话/projects/论文写作Skills分享/02-棋盘法选题/定稿/封面.png",
+  "mode": "C",
+  "brand": "lee-xue-ai",
+  "bar": {
+    "c_stops": [[0.0, 0.0], [0.25, 0.65], [1.0, 0.88]]
+  }
+}

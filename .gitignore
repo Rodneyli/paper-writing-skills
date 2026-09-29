@@ -1,4 +1,4 @@
-# 个人版与未发布内容（不推送到公开仓库）
-literature-search/
-top-down-pyramid-writing/
-*.zip
+__pycache__/
+*.pyc
+.env
+.DS_Store

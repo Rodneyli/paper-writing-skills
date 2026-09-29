@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>棋盘法选题 · 和Lee一起学AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#111;font-family:'Noto Sans SC',sans-serif}
+.deck-viewport{position:fixed;inset:0;overflow:hidden;background:#111}
+.deck-stage{position:absolute;left:0;top:0;width:1080px;height:1440px;overflow:hidden;transform-origin:0 0}
+.slide{position:absolute;inset:0;width:1080px;height:1440px;overflow:hidden;pointer-events:none;opacity:0;z-index:0}
+.slide.active,.slide.in{opacity:1;pointer-events:auto;z-index:1}
+img{max-width:100%;max-height:100%}
+@media print{html,body{width:1080px;height:auto;overflow:visible;background:#fff}.deck-viewport{position:static;overflow:visible}.deck-stage{position:static;width:auto;height:auto;transform:none!important}.slide{position:relative;display:block!important;visibility:visible!important;opacity:1!important;width:1080px;height:1440px;break-after:page}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.2s!important}}
+
+/* ====== Design System ====== */
+.slide-dark{background:#111}
+.slide-dark .c-text{color:#F0ECE5}
+.slide-dark .c-text-muted{color:#888880}
+.slide-dark .c-accent{color:#E85D26}
+.slide-dark .chrome{position:absolute;left:60px;right:60px;height:1px;background:#282826}
+.slide-dark .chrome-top{top:35px}
+.slide-dark .chrome-bot{bottom:35px}
+.slide-dark .kicker{font-family:'Noto Sans SC',sans-serif;font-size:18px;font-weight:500;letter-spacing:0.14em;color:#E85D26;margin-bottom:20px}
+.slide-dark .h2{font-family:'Noto Serif SC',serif;font-size:68px;font-weight:900;color:#F0ECE5;line-height:1.18;letter-spacing:-0.02em}
+.slide-dark .h3{font-family:'Noto Serif SC',serif;font-size:44px;font-weight:700;color:#F0ECE5;line-height:1.25}
+.slide-dark .lead{font-family:'Noto Sans SC',sans-serif;font-size:30px;font-weight:400;color:#F0ECE5;line-height:1.6}
+.slide-dark .body{font-family:'Noto Sans SC',sans-serif;font-size:26px;font-weight:400;color:#888880;line-height:1.7}
+.slide-dark .label{font-family:'Noto Sans SC',sans-serif;font-size:16px;font-weight:500;letter-spacing:0.1em;color:#505048}
+.slide-dark .rule{width:36px;height:2px;background:#E85D26;margin-bottom:20px}
+
+.slide-orange{background:#E85D26}
+.slide-orange .h1{font-family:'Noto Serif SC',serif;font-size:82px;font-weight:900;color:#111;line-height:1.15;letter-spacing:-0.03em}
+.slide-orange .h2{font-family:'Noto Serif SC',serif;font-size:68px;font-weight:900;color:#111;line-height:1.18;letter-spacing:-0.02em}
+.slide-orange .lead{font-family:'Noto Sans SC',sans-serif;font-size:30px;font-weight:400;color:rgba(17,17,17,0.75);line-height:1.6}
+.slide-orange .label{font-family:'Noto Sans SC',sans-serif;font-size:16px;font-weight:500;letter-spacing:0.1em;color:rgba(17,17,17,0.55)}
+
+/* ====== Layouts ====== */
+.content-area{position:absolute;left:60px;right:60px;top:50%;transform:translateY(-50%)}
+.cover-layout{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:60px;gap:36px}
+.cover-layout .text-side{width:100%;text-align:center}
+.cover-layout .img-side{width:100%;height:480px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.cover-layout .img-side img{width:100%;height:100%;object-fit:cover}
+.cover-catalogue{position:absolute;top:35px;left:60px;font-family:'Noto Sans SC',sans-serif;font-size:16px;font-weight:500;color:rgba(17,17,17,0.45);letter-spacing:0.1em}
+.cover-tag{display:inline-block;font-family:'Noto Sans SC',sans-serif;font-size:14px;font-weight:500;color:#111;border:1px solid rgba(17,17,17,0.4);padding:4px 12px;letter-spacing:0.1em;margin-bottom:20px}
+.cover-sub{font-family:'Noto Sans SC',sans-serif;font-size:28px;font-weight:400;color:rgba(17,17,17,0.75);margin-top:24px}
+
+.img-top{position:absolute;left:60px;right:60px;top:100px;height:540px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.img-top img{width:100%;height:100%;object-fit:contain}
+.text-below{position:absolute;left:60px;right:60px;top:680px}
+
+.list-items{margin-top:20px}
+.list-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
+.list-item::before{content:'/';font-family:'Noto Sans SC',sans-serif;font-weight:700;font-size:26px;color:#E85D26;flex-shrink:0;line-height:1.6}
+.list-item .body{flex:1;color:#F0ECE5;font-size:26px;line-height:1.6}
+
+.end-layout{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;padding:0 60px}
+.end-layout .h1{font-size:76px;line-height:1.2}
+.end-layout .lead{margin-top:24px;font-size:28px}
+
+/* ====== Animations ====== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:scale(1)}}
+.slide .au{opacity:0;transform:translateY(24px)}
+.slide .as{opacity:0;transform:scale(0.92)}
+.slide .ai{opacity:0}
+.slide.in .au{animation:fadeUp .5s cubic-bezier(.2,0,.3,1) both}
+.slide.in .as{animation:scaleIn .5s cubic-bezier(.2,0,.3,1) both}
+.slide.in .ai{animation:fadeIn .4s ease both}
+.slide.in .d1{animation-delay:.05s}.slide.in .d2{animation-delay:.15s}.slide.in .d3{animation-delay:.25s}
+.slide.in .d4{animation-delay:.35s}.slide.in .d5{animation-delay:.45s}.slide.in .d6{animation-delay:.55s}
+.slide.in .d7{animation-delay:.65s}.slide.in .d8{animation-delay:.75s}
+
+/* ====== Brand Bar ====== */
+.brand-bar{position:absolute;bottom:40px;left:60px;right:60px;z-index:200;display:flex;align-items:center;justify-content:space-between;pointer-events:none;border-top:1px solid #282826;padding-top:16px}
+.slide-orange .brand-bar{border-top:1px solid rgba(17,17,17,0.2)}
+.brand-left{display:flex;align-items:center;gap:12px}
+.brand-left img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:1px solid rgba(128,128,128,.15)}
+.brand-name{font-weight:700;font-size:24px;line-height:1.2}
+.brand-slogan{font-size:18px;opacity:.6;line-height:1.2}
+.slide-dark .brand-name{color:#F0ECE5}
+.slide-dark .brand-slogan{color:rgba(245,242,237,.45)}
+.slide-orange .brand-name{color:#111}
+.slide-orange .brand-slogan{color:rgba(17,17,17,0.55)}
+.brand-right{font-size:20px;opacity:.55;display:flex;align-items:center;gap:4px}
+.slide-dark .brand-right{color:#505048}
+.slide-orange .brand-right{color:rgba(17,17,17,0.4)}
+.brand-right .emoji{font-size:22px}
+</style>
+</head>
+<body>
+<div class="deck-viewport">
+<div class="deck-stage" id="stage">
+
+<!-- ====== Slide 1: 封面 ====== -->
+<div class="slide slide-orange active" data-slide="0">
+  <div class="cover-catalogue au d1">棋盘法选题 · 02</div>
+  <div class="cover-layout">
+    <div class="text-side">
+      <div class="cover-tag au d2">论文写作 Skills 系列</div>
+      <div class="h1 au d3">读了一堆论文，<br>课题呢？</div>
+      <div class="cover-sub au d4">画张表 · 找研究空白</div>
+    </div>
+    <div class="img-side as d5">
+      <img src="https://www.coze.cn/s/Cj7BkYEzQiY/" alt="棋盘法揭秘">
+    </div>
+  </div>
+  <div class="brand-bar au d6">
+    <div class="brand-left">
+      <img src="https://www.coze.cn/s/Wb8-yQuyWag/" alt="">
+      <div>
+        <div class="brand-name">和Lee一起学AI</div>
+        <div class="brand-slogan">学得懂，用得上</div>
+      </div>
+    </div>
+    <div class="brand-right"><span class="emoji">🦉</span> AI·效率·方法论</div>
+  </div>
+</div>
+
+<!-- ====== Slide 2: 痛点 ====== -->
+<div class="slide slide-dark" data-slide="1">
+  <div class="chrome chrome-top"></div>
+  <div class="chrome chrome-bot"></div>
+  <div class="content-area">
+    <div class="kicker au d1">问题</div>
+    <div class="rule ai d2"></div>
+    <div class="h2 au d3">读了一堆论文，<br>还是不知道课题做什么？</div>
+    <div class="lead au d4" style="margin-top:28px">感觉所有方向都被人做过了——别急，不是你没想法。</div>
+  </div>
+  <div class="brand-bar au d6">
+    <div class="brand-left">
+      <img src="https://www.coze.cn/s/Wb8-yQuyWag/" alt="">
+      <div>
+        <div class="brand-name">和Lee一起学AI</div>
+        <div class="brand-slogan">学得懂，用得上</div>
+      </div>
+    </div>
+    <div class="brand-right"><span class="emoji">🦉</span> AI·效率·方法论</div>
+  </div>
+</div>
+
+<!-- ====== Slide 3: 演示 - 两种输入 ====== -->
+<div class="slide slide-dark" data-slide="2">
+  <div class="chrome chrome-top"></div>
+  <div class="chrome chrome-bot"></div>
+  <div class="content-area">
+    <div class="kicker au d1">Skill 演示</div>
+    <div class="rule ai d2"></div>
+    <div class="h3 au d3">两种输入方式</div>
+    <div class="list-items au d4">
+      <div class="list-item"><div class="body">自己整理 5 篇以上核心文献 → 扔进去，棋盘自动填</div></div>
+      <div class="list-item"><div class="body">只给一个主题（如"迁移学习"）→ AI 聚焦搜文献、填棋盘、圈空白</div></div>
+    </div>
+    <div class="lead au d5" style="margin-top:28px;color:#888880;font-size:26px">两种方式，出来的都是同一张创新地图。</div>
+  </div>
+  <div class="brand-bar au d6">
+    <div class="brand-left">
+      <img src="https://www.coze.cn/s/Wb8-yQuyWag/" alt="">
+      <div>
+        <div class="brand-name">和Lee一起学AI</div>
+        <div class="brand-slogan">学得懂，用得上</div>
+      </div>
+    </div>
+    <div class="brand-right"><span class="emoji">🦉</span> AI·效率·方法论</div>
+  </div>
+</div>
+
+<!-- ====== Slide 4: 棋盘结构 (B版极简插图) ====== -->
+<div class="slide slide-dark" data-slide="3">
+  <div class="chrome chrome-top"></div>
+  <div class="chrome chrome-bot"></div>
+  <div class="img-top as d1">
+    <img src="https://www.coze.cn/s/Y4A2bSjAmhc/" alt="棋盘法结构">
+  </div>
+  <div class="text-below">
+    <div class="kicker au d2">方法</div>
+    <div class="rule ai d3"></div>
+    <div class="h2 au d4" style="font-size:56px;line-height:1.18">这张表叫棋盘</div>
+    <div class="lead au d5" style="margin-top:18px;color:#F0ECE5;font-size:26px">纵轴列研究问题，横轴列解决方法。有论文的地方标注，空着的地方就是还没人做过的事。</div>
+  </div>
+  <div class="brand-bar au d6">
+    <div class="brand-left">
+      <img src="https://www.coze.cn/s/Wb8-yQuyWag/" alt="">
+      <div>
+        <div class="brand-name">和Lee一起学AI</div>
+        <div class="brand-slogan">学得懂，用得上</div>
+      </div>
+    </div>
+    <div class="brand-right"><span class="emoji">🦉</span> AI·效率·方法论</div>
+  </div>
+</div>
+
+<!-- ====== Slide 5: 锤子找钉子 (A版卡通插图) ====== -->
+<div class="slide slide-dark" data-slide="4">
+  <div class="chrome chrome-top"></div>
+  <div class="chrome chrome-bot"></div>
+  <div class="img-top as d1">
+    <img src="https://www.coze.cn/s/Z_Z4Rf46I6k/" alt="锤子找钉子">
+  </div>
+  <div class="text-below">
+    <div class="kicker au d2">用法一</div>
+    <div class="rule ai d3"></div>
+    <div class="h2 au d4" style="font-size:52px;line-height:1.18">锤子找钉子</div>
+    <div class="lead au d5" style="margin-top:18px;color:#F0ECE5;font-size:26px">你擅长什么方法 → 锁住这一列，纵着往下扫 → 看还有哪些问题没用你这把锤子敲过。</div>
+  </div>
+  <div class="brand-bar au d6">
+    <div class="brand-left">
+      <img src="https://www.coze.cn/s/Wb8-yQuyWag/" alt="">
+      <div>
+        <div class="brand-name">和Lee一起学AI</div>
+        <div class="brand-slogan">学得懂，用得上</div>
+      </div>
+    </div>
+    <div class="brand-right"><span class="emoji">🦉</span> AI·效率·方法论</div>
+  </div>
+</div>
+
+<!-- ====== Slide 6: 钉子找锤子 (A版卡通插图) ====== -->
+<div class="slide slide-dark" data-slide="5">
+  <div class="chrome chrome-top"></div>
+  <div class="chrome chrome-bot"></div>
+  <div class="img-top as d1">
+    <img src="https://www.coze.cn/s/ZP0wZqtktIU/" alt="钉子找锤子">
+  </div>
+  <div class="text-below">
+    <div class="kicker au d2">用法二</div>
+    <div class="rule ai d3"></div>
+    <div class="h2 au d4" style="font-size:52px;line-height:1.18">钉子找锤子</div>
+    <div class="lead au d5" style="margin-top:18px;color:#F0ECE5;font-size:26px">你认准了一个非解决不可的问题 → 锁住这一行，横着往右扫 → 看还有哪些方法没被搬过来试过。</div>
+  </div>
+  <div class="brand-bar au d6">
+    <div class="brand-left">
+      <img src="https://www.coze.cn/s/Wb8-yQuyWag/" alt="">
+      <div>
+        <div class="brand-name">和Lee一起学AI</div>
+        <div class="brand-slogan">学得懂，用得上</div>
+      </div>
+    </div>
+    <div class="brand-right"><span class="emoji">🦉</span> AI·效率·方法论</div>
+  </div>
+</div>
+
+<!-- ====== Slide 7: 转折 ====== -->
+<div class="slide slide-dark" data-slide="6">
+  <div class="chrome chrome-top"></div>
+  <div class="chrome chrome-bot"></div>
+  <div class="content-area">
+    <div class="kicker au d1">注意</div>
+    <div class="rule ai d2"></div>
+    <div class="h2 au d3">空格子 ≠ 好课题</div>
+    <div class="lead au d4" style="margin-top:28px">有的空，是因为根本不值得做。<br>怎么筛？你需要另一张牌。</div>
+  </div>
+  <div class="brand-bar au d6">
+    <div class="brand-left">
+      <img src="https://www.coze.cn/s/Wb8-yQuyWag/" alt="">
+      <div>
+        <div class="brand-name">和Lee一起学AI</div>
+        <div class="brand-slogan">学得懂，用得上</div>
+      </div>
+    </div>
+    <div class="brand-right"><span class="emoji">🦉</span> AI·效率·方法论</div>
+  </div>
+</div>
+
+<!-- ====== Slide 8: 格雷准则预告 ====== -->
+<div class="slide slide-dark" data-slide="7">
+  <div class="chrome chrome-top"></div>
+  <div class="chrome chrome-bot"></div>
+  <div class="img-top as d1">
+    <img src="https://www.coze.cn/s/jAyNkc9ccqs/" alt="格雷准则">
+  </div>
+  <div class="text-below">
+    <div class="kicker au d2">下期预告</div>
+    <div class="rule ai d3"></div>
+    <div class="h2 au d4" style="font-size:52px;line-height:1.18">格雷准则</div>
+    <div class="lead au d5" style="margin-top:18px;color:#F0ECE5;font-size:26px">五个问题，帮你从一堆空格里挑出那一个黄金课题。下期，专门讲。</div>
+  </div>
+  <div class="brand-bar au d6">
+    <div class="brand-left">
+      <img src="https://www.coze.cn/s/Wb8-yQuyWag/" alt="">
+      <div>
+        <div class="brand-name">和Lee一起学AI</div>
+        <div class="brand-slogan">学得懂，用得上</div>
+      </div>
+    </div>
+    <div class="brand-right"><span class="emoji">🦉</span> AI·效率·方法论</div>
+  </div>
+</div>
+
+<!-- ====== Slide 9: CTA ====== -->
+<div class="slide slide-orange" data-slide="8">
+  <div class="end-layout">
+    <div class="label au d1">论文写作 Skills · 第 2 期</div>
+    <div class="h1 au d2">评论区回<br>"Skill"<br>直接拿</div>
+    <div class="lead au d3">关注我，下期教你怎么用格雷准则筛出真·创新课题。</div>
+    <div class="lead au d4" style="margin-top:12px;font-size:24px;color:rgba(17,17,17,0.55)">🦉 学得懂，用得上</div>
+  </div>
+  <div class="brand-bar au d5">
+    <div class="brand-left">
+      <img src="https://www.coze.cn/s/Wb8-yQuyWag/" alt="">
+      <div>
+        <div class="brand-name">和Lee一起学AI</div>
+        <div class="brand-slogan">学得懂，用得上</div>
+      </div>
+    </div>
+    <div class="brand-right"><span class="emoji">🦉</span> AI·效率·方法论</div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<script>
+// Deck viewport scaler
+const viewport = document.querySelector('.deck-viewport');
+const stage = document.querySelector('.deck-stage');
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+
+function resize() {
+  const vw = viewport.clientWidth;
+  const vh = viewport.clientHeight;
+  const stageW = 1080, stageH = 1440;
+  const scaleX = vw / stageW, scaleY = vh / stageH;
+  const scale = Math.min(scaleX, scaleY);
+  stage.style.width = stageW + 'px';
+  stage.style.height = stageH + 'px';
+  stage.style.transform = `translate(${(vw - stageW * scale) / 2}px, ${(vh - stageH * scale) / 2}px) scale(${scale})`;
+}
+
+function showSlide(n) {
+  if (n < 0 || n >= totalSlides) return;
+  slides[currentSlide].classList.remove('active', 'in');
+  currentSlide = n;
+  slides[currentSlide].classList.add('active');
+  requestAnimationFrame(() => { slides[currentSlide].classList.add('in'); });
+}
+
+window.addEventListener('resize', resize);
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+    e.preventDefault();
+    showSlide(currentSlide + 1);
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    showSlide(currentSlide - 1);
+  }
+});
+window.addEventListener('wheel', (e) => {
+  if (e.deltaY > 0) showSlide(currentSlide + 1);
+  else if (e.deltaY < 0) showSlide(currentSlide - 1);
+});
+
+// Touch swipe
+let touchStartY = 0;
+stage.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; });
+stage.addEventListener('touchend', (e) => {
+  const diff = touchStartY - e.changedTouches[0].clientY;
+  if (diff > 50) showSlide(currentSlide + 1);
+  else if (diff < -50) showSlide(currentSlide - 1);
+});
+
+resize();
+</script>
+</body>
+</html>

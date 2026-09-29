@@ -1,0 +1,9 @@
+{
+  "image": "/app/data/所有对话/主对话/imgs/260727_15_生图/cover01fix2.jpg",
+  "output": "/app/data/所有对话/主对话/projects/论文写作Skills分享/01-批判性创造性阅读/定稿/封面.png",
+  "mode": "C",
+  "brand": "lee-xue-ai",
+  "bar": {
+    "c_stops": [[0.0, 0.0], [0.25, 0.65], [1.0, 0.88]]
+  }
+}
