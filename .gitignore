@@ -7,3 +7,8 @@ __pycache__/
 episodes/
 # ---- 版权电子书（有版权法律风险，不公开）----
 books/
+# ---- 仓库面向读者只留每期 skills：项目文档 / 蒸馏 / 分发包 / 重复目录均不公开 ----
+distillation/
+project-docs/
+定稿skill包/
+zotero-cite/
