@@ -1,4 +1,9 @@
-# 个人版与未发布内容（不推送到公开仓库）
-literature-search/
-top-down-pyramid-writing/
-*.zip
+__pycache__/
+*.pyc
+.env
+.DS_Store
+
+# ---- 不上 GitHub：视频制作物料（体积大，含个人创作） ----
+episodes/
+# ---- 版权电子书（有版权法律风险，不公开）----
+books/

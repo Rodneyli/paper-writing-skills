@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>论文写作Skills系列 · 全项目进度与上下文说明（2026-08-17）</title>
+<style>
+:root{
+  --canvas:#faf8f4;
+  --surface:#ffffff;
+  --ink:#1a1d21;
+  --muted:#5b636e;
+  --line:#e4e0d8;
+  --brand:#f26b1d;
+  --brand-soft:#fdeee0;
+  --ok:#2e8b57;
+  --ok-soft:#e6f4ec;
+  --warn:#b7791f;
+  --warn-soft:#fdf3e2;
+  --pending:#8a929c;
+  --pending-soft:#eef0f2;
+  --focus:#1d5bbf;
+  --focus-soft:#e8f0fc;
+  --radius:10px;
+  --shadow:0 1px 3px rgba(26,29,33,.06),0 6px 20px rgba(26,29,33,.05);
+  --font-display:ui-rounded,"SF Pro Rounded",system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  --font-body:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--canvas);color:var(--ink);font-family:var(--font-body);line-height:1.7;font-size:15px}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.3;letter-spacing:-.01em}
+.wrap{max-width:1180px;margin:0 auto;padding:32px 22px 80px}
+
+/* header */
+.hero{border-bottom:2px solid var(--brand);padding-bottom:26px;margin-bottom:30px}
+.hero .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.08em;color:var(--brand);text-transform:uppercase}
+.hero .kicker svg{width:15px;height:15px}
+.hero h1{font-size:clamp(24px,3.4vw,34px);margin:10px 0 8px}
+.hero .sub{color:var(--muted);font-size:15px;max-width:820px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:14px;color:var(--muted);font-size:13px}
+
+/* stat cards */
+.statgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:22px 0 34px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 16px 13px;box-shadow:var(--shadow)}
+.stat .num{font-family:var(--font-display);font-size:26px;font-weight:800;color:var(--ink);line-height:1.15}
+.stat .num small{font-size:14px;font-weight:600;color:var(--muted)}
+.stat .lbl{font-size:12.5px;color:var(--muted);margin-top:3px}
+.stat.hot{border-color:var(--brand);background:linear-gradient(180deg,#fff 0%,var(--brand-soft) 140%)}
+.stat.hot .num{color:var(--brand)}
+
+/* section */
+section{margin:0 0 40px}
+h2{font-size:21px;margin:0 0 6px;display:flex;align-items:baseline;gap:10px}
+h2 .no{font-family:var(--font-mono);font-size:13px;color:var(--brand);font-weight:700}
+.sec-desc{color:var(--muted);font-size:13.5px;margin:0 0 16px;max-width:900px}
+h3{font-size:16.5px;margin:24px 0 8px}
+.lead{font-size:15px}
+
+/* pipeline svg */
+.pipe{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 14px;box-shadow:var(--shadow);overflow-x:auto}
+.pipe svg{width:100%;min-width:760px;height:auto;display:block}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:640px}
+caption{text-align:left;padding:12px 14px;font-weight:700;font-family:var(--font-display);font-size:14px;border-bottom:1px solid var(--line)}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+th{background:#f6f3ed;font-size:12.5px;color:#3d434b;white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#faf7f2}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+code{font-family:var(--font-mono);font-size:12.5px;background:#f1eee7;border:1px solid #e6e1d7;padding:1px 6px;border-radius:5px;white-space:nowrap}
+.badge{display:inline-block;padding:1px 9px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+.b-ok{background:var(--ok-soft);color:var(--ok)}
+.b-warn{background:var(--warn-soft);color:var(--warn)}
+.b-pending{background:var(--pending-soft);color:var(--pending)}
+.b-focus{background:var(--focus-soft);color:var(--focus)}
+.b-brand{background:var(--brand-soft);color:var(--brand)}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:8px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 17px;box-shadow:var(--shadow)}
+.card h3{margin:0 0 6px;font-size:15.5px}
+.card .tag{font-size:12px;color:var(--muted);margin-bottom:8px}
+.card p,.card li{font-size:13.5px;margin:0 0 6px}
+.card ul{padding-left:18px;margin:6px 0 0}
+.card .statusline{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--muted)}
+.card.focus{border-color:var(--brand);background:linear-gradient(180deg,#fff,var(--brand-soft))}
+
+/* tree */
+.tree{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);font-family:var(--font-mono);font-size:12.5px;overflow-x:auto;line-height:1.75}
+.tree .cm{color:var(--muted)}
+.tree .hl{color:var(--brand);font-weight:700}
+
+/* callout */
+.note{border-left:4px solid var(--brand);background:var(--brand-soft);border-radius:0 var(--radius) var(--radius) 0;padding:13px 16px;margin:14px 0;font-size:13.5px}
+.note.blue{border-color:var(--focus);background:var(--focus-soft)}
+.note.gray{border-color:var(--pending);background:var(--pending-soft)}
+
+ol.steps>li{margin-bottom:10px}
+ol.steps b{color:var(--brand)}
+
+/* focus banner */
+.focusbanner{background:#16181c;color:#eef0f3;border-radius:var(--radius);padding:20px 22px;margin:18px 0;display:flex;flex-wrap:wrap;gap:18px;align-items:flex-start}
+.focusbanner .fb-main{flex:1 1 300px}
+.focusbanner h3{margin:0 0 6px;color:#fff;font-size:17px}
+.focusbanner p{margin:0 0 6px;font-size:13.5px;color:#c6ccd4}
+.focusbanner .fb-list{flex:1 1 260px;font-size:13px}
+.focusbanner .fb-list .item{display:flex;gap:9px;align-items:flex-start;padding:7px 0;border-top:1px solid #2c3036}
+.focusbanner .fb-list .item:first-child{border-top:none}
+.focusbanner .fb-list .dot{flex:none;width:8px;height:8px;border-radius:50%;margin-top:8px;background:var(--brand)}
+.focusbanner .fb-list .dot.gray{background:#6b7280}
+.focusbanner .fb-list .dot.green{background:var(--ok)}
+.focusbanner .fb-list .dot.blue{background:var(--focus)}
+.focusbanner .fb-list b{color:#fff}
+
+@media print{
+  body{background:#fff}
+  .wrap{max-width:100%;padding:10px 0}
+  .statgrid,.pipe,.tbl-wrap,.card,.tree,.focusbanner{box-shadow:none;break-inside:avoid}
+  .hero{border-bottom-color:#000}
+  a{color:inherit}
+}
+@media (max-width:640px){
+  .wrap{padding:20px 14px 60px}
+  h2{font-size:19px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 2l3 6.5L22 9l-5 4.5 1.5 7L12 16.8 5.5 20.5 7 13.5 2 9l7-.5z"/></svg>
+    项目交接文档 · 面向接手 Agent
+  </div>
+  <h1>论文写作Skills系列 · 全项目进度与上下文说明</h1>
+  <p class="sub">本文档是「论文写作Skills」系列项目的完整快照：体系架构、每期进度、物料位置、工作流规则、当前阻塞与下一步。接手者（hermes / 新 Agent）读完本文即可完整接管项目。</p>
+  <div class="meta">
+    <span>📅 生成：2026-08-17</span>
+    <span>🗂 项目根：<code>projects/论文写作Skills系列/</code></span>
+    <span>🎬 平台：抖音短视频（3:4 竖版）</span>
+    <span>👥 受众：研究生 / 科研新手</span>
+  </div>
+</header>
+
+<!-- ============ 核心事实 ============ -->
+<section>
+  <h2><span class="no">01</span>核心事实速览</h2>
+  <p class="sec-desc">先看数字，再看架构。这 6 个数字是接手者最先要知道的。</p>
+  <div class="statgrid">
+    <div class="stat"><div class="num">7<small> 工位</small></div><div class="lbl">检索→筛选→精读→方向→综述→正文→返修</div></div>
+    <div class="stat hot"><div class="num">19<small>+2</small></div><div class="lbl">主系列期数 + 可选加更</div></div>
+    <div class="stat"><div class="num">21<small> 个</small></div><div class="lbl">skill 已按工位分目录（19主+2bonus）</div></div>
+    <div class="stat"><div class="num">1<small> 期</small></div><div class="lbl">已发布（第0期）</div></div>
+    <div class="stat"><div class="num">2<small> 期</small></div><div class="lbl">已做待发（第4、9期）</div></div>
+    <div class="stat"><div class="num">2<small> 期</small></div><div class="lbl">制作中（第1期、B0期）</div></div>
+  </div>
+  <div class="note">⚠️ <b>工作流版本</b>：制作流程以 <code>short-video-workflow v2.5</code> 为准（2026-08-17 更新并发布）。项目内旧参考目录仍是 v2.4，最新版在工作区 <code>skill-drafts/short-video-workflow/</code>，接手时以 v2.5 为准。</div>
+</section>
+
+<!-- ============ 七工位 ============ -->
+<section>
+  <h2><span class="no">02</span>七工位流水线</h2>
+  <p class="sec-desc">整条系列是「给 AI 装一个 skill，一句话搞定一个科研环节」的线性叙事。现实科研是循环，视频按线性讲。</p>
+  <div class="pipe">
+    <svg viewBox="0 0 1060 150" role="img" aria-label="七工位流水线示意图" aria-describedby="pipe-desc">
+      <desc id="pipe-desc">七工位流水线：检索引擎（第0期）→筛选（第1-3期）→精读（第4-7期）→方向发现（第8-11期）→综述撰写（第12-14期）→正文撰写（第15-17期）→投稿返修（第18期），方向发现后可回到检索或精读补充弹药。</desc>
+      <defs>
+        <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#f26b1d"/>
+        </marker>
+      </defs>
+      <g font-family="system-ui,PingFang SC,sans-serif">
+        <rect x="18" y="20" width="128" height="78" rx="10" fill="#f26b1d"/>
+        <text x="82" y="52" text-anchor="middle" fill="#fff" font-size="15" font-weight="700">工位一</text>
+        <text x="82" y="74" text-anchor="middle" fill="#fff" font-size="13">检索 · 第0期</text>
+        <rect x="182" y="20" width="128" height="78" rx="10" fill="#1d5bbf"/>
+        <text x="246" y="52" text-anchor="middle" fill="#fff" font-size="15" font-weight="700">工位二</text>
+        <text x="246" y="74" text-anchor="middle" fill="#fff" font-size="13">筛选 · 第1-3期</text>
+        <rect x="346" y="20" width="128" height="78" rx="10" fill="#1d5bbf"/>
+        <text x="410" y="52" text-anchor="middle" fill="#fff" font-size="15" font-weight="700">工位三</text>
+        <text x="410" y="74" text-anchor="middle" fill="#fff" font-size="13">精读 · 第4-7期</text>
+        <rect x="510" y="20" width="128" height="78" rx="10" fill="#1d5bbf"/>
+        <text x="574" y="52" text-anchor="middle" fill="#fff" font-size="15" font-weight="700">工位四</text>
+        <text x="574" y="74" text-anchor="middle" fill="#fff" font-size="13">方向 · 第8-11期</text>
+        <rect x="674" y="20" width="128" height="78" rx="10" fill="#1d5bbf"/>
+        <text x="738" y="52" text-anchor="middle" fill="#fff" font-size="15" font-weight="700">工位五</text>
+        <text x="738" y="74" text-anchor="middle" fill="#fff" font-size="13">综述 · 第12-14期</text>
+        <rect x="838" y="20" width="128" height="78" rx="10" fill="#1d5bbf"/>
+        <text x="902" y="52" text-anchor="middle" fill="#fff" font-size="15" font-weight="700">工位六</text>
+        <text x="902" y="74" text-anchor="middle" fill="#fff" font-size="13">正文 · 第15-17期</text>
+        <rect x="1002" y="20" width="0" height="0" rx="0" fill="none"/>
+        <text x="1016" y="40" text-anchor="middle" fill="#8a929c" font-size="12">工位七</text>
+        <text x="1016" y="58" text-anchor="middle" fill="#8a929c" font-size="12">返修</text>
+        <text x="1016" y="76" text-anchor="middle" fill="#8a929c" font-size="12">第18期</text>
+        <!-- arrows -->
+        <path d="M146,59 L178,59" stroke="#f26b1d" stroke-width="2.5" marker-end="url(#arw)" fill="none"/>
+        <path d="M310,59 L342,59" stroke="#1d5bbf" stroke-width="2.5" marker-end="url(#arw)" fill="none"/>
+        <path d="M474,59 L506,59" stroke="#1d5bbf" stroke-width="2.5" marker-end="url(#arw)" fill="none"/>
+        <path d="M638,59 L670,59" stroke="#1d5bbf" stroke-width="2.5" marker-end="url(#arw)" fill="none"/>
+        <path d="M802,59 L834,59" stroke="#1d5bbf" stroke-width="2.5" marker-end="url(#arw)" fill="none"/>
+        <path d="M966,59 L998,59" stroke="#1d5bbf" stroke-width="2.5" marker-end="url(#arw)" fill="none"/>
+        <!-- return loop -->
+        <path d="M1002,110 C700,135 300,135 100,110" stroke="#8a929c" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arw)" fill="none"/>
+        <text x="530" y="135" text-anchor="middle" fill="#8a929c" font-size="12.5">方向发现后回到检索/精读补充弹药（现实循环）</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ 整体进度总览 ============ -->
+<section>
+  <h2><span class="no">03</span>整体进度总览（23 个 episode 目录）</h2>
+  <p class="sec-desc">按期号排序，覆盖 episodes/ 下全部目录。「物料完整度」看该期是否已产出口播稿/封面/slides/发布物料等视频物料，而非仅有 SKILL.md。</p>
+  <div class="tbl-wrap">
+    <table>
+      <caption>各期状态一览</caption>
+      <thead>
+        <tr><th>期号</th><th>主题 / skill</th><th>工位</th><th>视频状态</th><th>物料完整度</th><th>备注</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">预告</td><td>系列预告单页</td><td>—</td><td><span class="badge b-ok">✅ 完成</span></td><td>slides + 定稿 + 截图</td><td>预告单页已产出</td></tr>
+        <tr><td class="num">0</td><td>文献检索引擎<br><code>literature-search</code></td><td>检索</td><td><span class="badge b-ok">✅ 已发布</span></td><td>完整（终稿物料+封面+slides）</td><td>五库联搜；数据反馈好；后续期只承接不动</td></tr>
+        <tr><td class="num">1</td><td>预读→分类→详读<br><code>preread-classify-deepread</code></td><td>筛选</td><td><span class="badge b-focus">🔵 制作中</span></td><td>口播稿 v1-v3 + project.md</td><td><b>最高优先级</b>：兑现第0期评论区承诺「AI 批量筛论文」</td></tr>
+        <tr><td class="num">2</td><td>研究质量评估清单<br><code>research-quality-checklist</code></td><td>筛选</td><td><span class="badge b-pending">⏳ 待做</span></td><td>仅 SKILL.md</td><td>Phase 2 合并（定量13+定性8）</td></tr>
+        <tr><td class="num">3</td><td>证据思维<br><code>evidence-thinking</code></td><td>筛选</td><td><span class="badge b-pending">⏳ 待做</span></td><td>仅 SKILL.md</td><td>Phase 2 合并（两skill）</td></tr>
+        <tr><td class="num">4</td><td>批判性创造性阅读<br><code>critical-creative-paper-reading</code></td><td>精读</td><td><span class="badge b-warn">🎬 已做待发</span></td><td>完整（口播/封面/图卡/slides/发布物料/定稿）</td><td>发布时按新期号4，需核对期号表述并微调串场</td></tr>
+        <tr><td class="num">5</td><td>九列笔记法<br><code>spreadsheet-note-system</code></td><td>精读</td><td><span class="badge b-pending">⏳ 待做</span></td><td>仅 SKILL.md</td><td>—</td></tr>
+        <tr><td class="num">6</td><td>文献深度分析十二准则<br><code>deep-article-analysis</code></td><td>精读</td><td><span class="badge b-pending">⏳ 待做</span></td><td>仅 SKILL.md</td><td>—</td></tr>
+        <tr><td class="num">7</td><td>论断vs证据<br><code>claim-vs-evidence</code></td><td>精读</td><td><span class="badge b-pending">⏳ 待做</span></td><td>仅 SKILL.md</td><td>—</td></tr>
+        <tr><td class="num">8</td><td>选题精炼十四步<br><code>topic-refinement</code></td><td>方向</td><td><span class="badge b-pending">⏳ 待做</span></td><td>仅 SKILL.md</td><td>—</td></tr>
+        <tr><td class="num">9</td><td>棋盘法选题定位<br><code>matrix-method-topic-selection</code></td><td>方向</td><td><span class="badge b-warn">🎬 已做待发</span></td><td>完整（口播 v1-v3/封面/slides/发布物料/定稿/图卡）</td><td>发布时按新期号9，需核对期号表述并微调串场</td></tr>
+        <tr><td class="num">10</td><td>格雷准则选题筛选<br><code>grays-criteria-problem-evaluation</code></td><td>方向</td><td><span class="badge b-focus">🔵 部分完成</span></td><td>口播稿 + 发布物料 + slides + 定稿</td><td>已有较完整物料，接近待发</td></tr>
+        <tr><td class="num">11</td><td>课题聚焦反游击战<br><code>research-focus-anti-guerrilla</code></td><td>方向</td><td><span class="badge b-pending">⏳ 待做</span></td><td>仅 SKILL.md</td><td>—</td></tr>
+        <tr><td class="num">12</td><td>笔记→主题大纲<br><code>notes-to-outline-synthesis</code></td><td>综述</td><td><span class="badge b-pending">⏳ 待做</span></td><td>仅 SKILL.md</td><td>—</td></tr>
+        <tr><td class="num">13</td><td>注释化vs综合叙述<br><code>annotative-vs-synthetic-writing</code></td><td>综述</td><td><span class="badge b-pending">⏳ 待做</span></td><td>仅 SKILL.md</td><td>—</td></tr>
+        <tr><td class="num">14</td><td>空白点与未来方向<br><code>blank-spots-and-future-directions</code></td><td>综述</td><td><span class="badge b-pending">⏳ 待做</span></td><td>仅 SKILL.md</td><td>—</td></tr>
+        <tr><td class="num">15</td><td>金字塔写作法<br><code>top-down-pyramid-writing</code></td><td>正文</td><td><span class="badge b-pending">⏳ 待做</span></td><td>仅 SKILL.md</td><td>—</td></tr>
+        <tr><td class="num">16</td><td>10/30 可读性检测<br><code>ten-thirty-readability-test</code></td><td>正文</td><td><span class="badge b-pending">⏳ 待做</span></td><td>仅 SKILL.md</td><td>—</td></tr>
+        <tr><td class="num">17</td><td>终稿自检<br><code>final-self-edit-checklist</code></td><td>正文</td><td><span class="badge b-pending">⏳ 待做</span></td><td>仅 SKILL.md</td><td>Phase 2 合并（两skill）</td></tr>
+        <tr><td class="num">18</td><td>回复审稿人<br><code>response-to-reviewers</code></td><td>返修</td><td><span class="badge b-pending">⏳ 待做</span></td><td>仅 SKILL.md</td><td>Phase 2 新做 skill</td></tr>
+        <tr><td class="num">B0</td><td>AI时代的文献管理<br><code>zotero-cite</code></td><td>加更</td><td><span class="badge b-brand">🟠 制作中（当前焦点）</span></td><td>口播稿定稿 + skill交付包 + 封面方案v2待审</td><td>skill 源码已在期目录；演示素材待用户录屏</td></tr>
+        <tr><td class="num">B1</td><td>学术头脑风暴<br><code>academic-brainstorming-ideation</code></td><td>加更</td><td><span class="badge b-pending">⏳ 可选</span></td><td>仅 SKILL.md</td><td>主系列播放稳定后再做</td></tr>
+        <tr><td class="num">B2</td><td>博士论文蓝图<br><code>thesis-blueprint-planning</code></td><td>加更</td><td><span class="badge b-pending">⏳ 可选</span></td><td>仅 SKILL.md</td><td>粉丝中博士生占比高时再做</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 重点期详情 ============ -->
+<section>
+  <h2><span class="no">04</span>重点期详情</h2>
+  <p class="sec-desc">只有已推进视频制作、或有明确下一步的期才展开；纯 SKILL.md 期暂略。</p>
+  <div class="cards">
+    <div class="card focus">
+      <h3>🟠 B0 · AI时代的文献管理（zotero-cite）</h3>
+      <div class="tag">加更 · 当前正在制作的期</div>
+      <p><b>定位</b>：AI 检索文献→一键进 Zotero 库→生成 Word「活引用」，换格式全自动刷新。</p>
+      <ul>
+        <li>✅ skill 交付包完整（SKILL.md + zotero_cite.py + 测试）</li>
+        <li>✅ 口播稿定稿：311字/90s，主标题「写论文别手打引用了」</li>
+        <li>🟠 封面方案 v2 待用户审核：<b>方案A（推荐）文献流水线</b> / 方案B 手打vs一键，标题排版已固定</li>
+        <li>✅ 定稿/ 文件夹已建；02_封面.png 为旧 bold-graphic 版，<b>待重做</b></li>
+        <li>⬜ 演示素材：用户自录屏（search→add→cite 三步）</li>
+      </ul>
+      <div class="statusline">下一步：等用户确认封面方案 → 按 Lee 数字形象规范生图 → 自检 → 拼品牌栏 → 归档定稿</div>
+    </div>
+    <div class="card">
+      <h3>🔵 第1期 · 预读→分类→详读</h3>
+      <div class="tag">工位二筛选 · 最高优先级</div>
+      <p><b>为什么优先</b>：第0期评论区已承诺「下期教你让 AI 批量筛论文、自动提取核心观点」。</p>
+      <ul>
+        <li>✅ project.md 总控台 + 选题验证完成</li>
+        <li>🟠 口播稿已有 v1/v2/v3 三版，待定稿</li>
+        <li>⬜ 封面、slides、发布物料未开始</li>
+      </ul>
+      <div class="statusline">下一步：口播稿定稿 → 封面（按 v2.5 基准）→ 发布物料</div>
+    </div>
+    <div class="card">
+      <h3>🎬 第4期 · 批判性创造性阅读</h3>
+      <div class="tag">工位三精读 · 已做待发</div>
+      <p><b>状态</b>：视频已制作完成，物料齐全（口播稿/封面/图卡/slides/发布物料/定稿），<b>未发布</b>。</p>
+      <ul>
+        <li>⚠️ 发布前须：核对口播稿里期号表述（原期号→新第4期）+ 微调串场</li>
+        <li>⚠️ 待 Rod 确认素材位置后核对</li>
+      </ul>
+      <div class="statusline">下一步：期号核对通过后即可发布</div>
+    </div>
+    <div class="card">
+      <h3>🎬 第9期 · 棋盘法选题定位</h3>
+      <div class="tag">工位四方向 · 已做待发</div>
+      <p><b>状态</b>：视频已制作完成，物料完整（口播 v1-v3/封面/slides/发布物料/定稿/图卡），<b>未发布</b>。</p>
+      <ul>
+        <li>⚠️ 发布前须：核对期号表述（原期号→新第9期）+ 微调串场</li>
+        <li>⚠️ skill 以 Rod 最新版为准（与 books/ 版内容一致）</li>
+      </ul>
+      <div class="statusline">下一步：期号核对通过后即可发布</div>
+    </div>
+    <div class="card">
+      <h3>🔵 第10期 · 格雷准则选题筛选</h3>
+      <div class="tag">工位四方向 · 部分完成</div>
+      <p><b>状态</b>：已有口播稿、发布物料、slides、定稿，物料较完整。</p>
+      <ul>
+        <li>🟠 待最终校验与确认后接近待发</li>
+      </ul>
+      <div class="statusline">下一步：校验物料完整性 → 补齐缺口 → 进入发布序列</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 工作流规则 ============ -->
+<section>
+  <h2><span class="no">05</span>制作工作流规则（v2.5 硬约束）</h2>
+  <p class="sec-desc">接手者制作任何一期都必须遵守以下规则。完整版见 <code>short-video-workflow v2.5 SKILL.md</code>。</p>
+  <div class="cards">
+    <div class="card">
+      <h3>🖼 封面风格（系列统一基准 · 硬约束）</h3>
+      <ul>
+        <li><b>Lee 数字形象</b>（黑色短发/圆眼/深灰圆领T恤/扁平矢量）</li>
+        <li>深黑背景极简矢量 + <b>品牌橙唯一强调色</b></li>
+        <li>顶部标题区：橙色角标「论文写作Skills·第N期」+ 白色粗体主标题 + 副标题</li>
+        <li>左下品牌栏：头像 + 「和Lee一起学AI 学得懂，用得上」</li>
+        <li>生图必须 <code>ref_images</code> 传 <code>ai-avatar-flat.png</code> + mode="生图"</li>
+        <li>🚫 禁止 bold-graphic 粗黑漫画风、左右分屏卡通对比、多色撞色</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>⏸ 审核节点（护栏14 · 硬约束）</h3>
+      <p>以下四个节点<b>必须停下等用户确认</b>，禁止闷头做完：</p>
+      <ul>
+        <li>① Step4 口播稿定稿后</li>
+        <li>② Step5 封面方案/风格确认后（生图前）</li>
+        <li>③ 封面底图生成后（自检+确认后拼品牌栏）</li>
+        <li>④ Step6 发布物料成稿后</li>
+      </ul>
+      <p class="statusline">用户喊「先停」即停。</p>
+    </div>
+    <div class="card">
+      <h3>📁 定稿文件夹（标准结构）</h3>
+      <ul>
+        <li>标准项目结构新增 <code>09_定稿/</code>（每期必建）</li>
+        <li>最终交付物统一归档到定稿，中途版本不进</li>
+        <li>B0 期已建 <code>定稿/</code> 文件夹</li>
+      </ul>
+      <div class="note gray" style="margin:8px 0 0">制作流程：Step 0 选题验证 → 0.5 爆款调研 → 1 主副类型 → 2 物料选配 → 3 制作计划 → 4 口播稿 → 5 封面 → 6 发布物料 → 7 数据复盘</div>
+    </div>
+  </div>
+  <div class="note blue">📐 <b>画幅与物料参数</b>：3:4 竖版（1080×1440）硬约束；目标时长 60-120s（B0期=90s）；口播 3-4 字/秒；每期发布物 = 口播稿 + 发布物料（标题×2、封面标题、标签、正文、置顶评论）+ slides + skill 压缩包。</div>
+</section>
+
+<!-- ============ 当前焦点与待办 ============ -->
+<section>
+  <h2><span class="no">06</span>当前焦点与待办</h2>
+  <p class="sec-desc">接手时优先处理的事项，按紧急度排序。</p>
+
+  <div class="focusbanner">
+    <div class="fb-main">
+      <h3>当前唯一制作中：B0 期</h3>
+      <p>B0（zotero-cite）是 2026-08-17 正在推进的期，其余期要么已发布、已做待发、要么仅 skill 就位。</p>
+    </div>
+    <div class="fb-list">
+      <div class="item"><span class="dot green"></span><span><b>✅ 已完成</b>：skill v2.5 已发布到「我的技能」；B0 口播稿定稿；定稿文件夹已建</span></div>
+      <div class="item"><span class="dot"></span><span><b>⏳ 等用户</b>：封面方案 v2 选 A 还是 B；口播稿用户提过「有问题」待说明细节</span></div>
+      <div class="item"><span class="dot blue"></span><span><b>下一步</b>：封面确认后按 Lee 基准生图→自检→拼品牌栏→归档；随后第1期（兑现承诺）</span></div>
+    </div>
+  </div>
+
+  <h3>待办清单（全局）</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>优先级</th><th>事项</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge b-brand">高</span></td><td>B0 期封面方案确认并生图</td><td>等用户选 A/B，按 Lee 基准执行</td></tr>
+        <tr><td><span class="badge b-brand">高</span></td><td>B0 口播稿问题确认</td><td>用户提到「口播稿有问题」，待用户说明类型后修改</td></tr>
+        <tr><td><span class="badge b-focus">高</span></td><td>第1期视频制作</td><td>兑现第0期评论区承诺，优先级最高</td></tr>
+        <tr><td><span class="badge b-warn">中</span></td><td>第4、9期期号核对</td><td>发布时按新期号，需检查口播期号表述并微调串场</td></tr>
+        <tr><td><span class="badge b-warn">中</span></td><td>工作流参考目录更新</td><td>项目内参考仍是 v2.4，需同步为 v2.5</td></tr>
+        <tr><td><span class="badge b-pending">低</span></td><td>git 首次提交</td><td>Rod 拍板后执行</td></tr>
+        <tr><td><span class="badge b-pending">低</span></td><td>爆款数据技能鉴权</td><td>REDFOX_API_KEY / X_API_KEY 未配置，调研走降级路径</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 目录结构 ============ -->
+<section>
+  <h2><span class="no">07</span>目录结构与关键文件索引</h2>
+  <p class="sec-desc">项目根为 <code>projects/论文写作Skills系列/</code>。核心阅读顺序：<code>SUITE_INDEX.md</code>（宪法）→ <code>EPISODE_PLAN.md</code>（期数规划）→ <code>AGENTS.md</code>（约定）→ <code>封面基准模板.md</code>。</p>
+  <div class="tree">
+<pre><span class="cm"># 项目根</span>
+<code>论文写作Skills系列/</code>
+├── <span class="hl">SUITE_INDEX.md</span>         体系宪法：七工位流水线、期数表、合并映射、统一依赖图、溯源表
+├── <span class="hl">EPISODE_PLAN.md</span>       视频期数规划：每期钩子/要点/串场/状态、制作约定、待办
+├── <span class="hl">AGENTS.md</span>            项目说明：定位、目录约定、核心规则、验证方式
+├── <span class="hl">封面基准模板.md</span>     封面系列基准（Lee数字形象版，2026-08-17 更新方向）
+├── <span class="hl">全项目进度说明-20260817.html</span>  ← 本文档
+├── episodes/                 每期一个文件夹（23个）
+│   ├── 00-文献检索Skill/      第0期：✅已发布，终稿物料+封面+slides
+│   ├── 00-系列预告/           预告单页：slides+定稿+截图
+│   ├── 01-预读分类详读/       第1期：🔵口播v1-v3+project.md（最高优先）
+│   ├── 02~03/                仅 SKILL.md
+│   ├── 04-批判性创造性阅读/   第4期：🎬已做待发，完整物料（47M）
+│   ├── 05~08/                仅 SKILL.md
+│   ├── 09-棋盘法选题/         第9期：🎬已做待发，完整物料
+│   ├── 10-格雷准则选题筛选/   第10期：🔵口播+发布物料+slides+定稿
+│   ├── 11~18/                仅 SKILL.md
+│   ├── <span class="hl">B0-文献管理-zotero/</span>   B0期：🟠制作中，口播稿+封面方案v2+skill交付包+定稿/
+│   ├── B1-学术头脑风暴/       仅 SKILL.md（可选）
+│   └── B2-博士论文蓝图/       仅 SKILL.md（可选）
+├── skills/                    skill 体系（按工位分目录）
+│   ├── stage1-search/         literature-search（第0期）
+│   ├── stage2-screen/         preread-classify-deepread / research-quality-checklist / evidence-thinking
+│   ├── stage3-read/           critical-creative-paper-reading / spreadsheet-note-system / deep-article-analysis / claim-vs-evidence
+│   ├── stage4-direction/      topic-refinement / matrix-method-topic-selection / grays-criteria / research-focus
+│   ├── stage5-review/         notes-to-outline / annotative-vs-synthetic / blank-spots
+│   ├── stage6-writing/        top-down-pyramid / ten-thirty-readability / final-self-edit
+│   ├── stage7-rebuttal/       response-to-reviewers
+│   └── bonus/                 academic-brainstorming / thesis-blueprint-planning
+├── 工作流参考-short-video-workflow/   ⚠️ 旧 v2.4 参考（最新 v2.5 在工作区 skill-drafts/）
+└── _archive/                  历史归档（03/04/05 期旧版、技能交付、skill源文件）
+  </pre>
+  </div>
+  <div class="note">🔑 <b>B0 期内部关键文件</b>：<code>01_口播稿.md</code>（311字/90s 定稿）｜<code>references/封面方案v2-B0期-20260817.md</code>（A/B 待审）｜<code>references/爆款调研-*.md</code>｜<code>references/标题评估-*.md</code>｜<code>SKILL.md + zotero_cite.py + test_zotero_cite.py</code>（交付包）｜<code>定稿/</code>（归档）｜<code>project.md</code>（总控台）</div>
+</section>
+
+<!-- ============ 接手建议 ============ -->
+<section>
+  <h2><span class="no">08</span>给接手者的建议</h2>
+  <ol class="steps">
+    <li><b>先读宪法再动手</b>：<code>SUITE_INDEX.md</code>（依赖/期数/合并映射）→ <code>EPISODE_PLAN.md</code>（每期内容）→ <code>AGENTS.md</code>（约定）。改体系先改 SUITE_INDEX，再动 skill 正文。</li>
+    <li><b>制作流程以 v2.5 为准</b>：项目内参考目录是旧 v2.4，最新版在工作区 <code>skill-drafts/short-video-workflow/SKILL.md</code>，已发布到「我的技能」。</li>
+    <li><b>当前唯一制作中 = B0 期</b>：等用户确认封面方案 A/B 后，按 Lee 数字形象规范生图（ref_images 传 ai-avatar-flat.png，3:4 竖版，顶部标题区），生图后自检→拼品牌栏（C 模式）→归档定稿。</li>
+    <li><b>做完第1期再铺开</b>：第1期是兑现第0期评论区承诺，优先级高于其他待做期。</li>
+    <li><b>已做待发的第4、9期</b>：只做期号核对与串场微调，不重做物料，不动已做 skill 正文。</li>
+    <li><b>环境注意</b>：爆款数据技能（xhs-copywriter / wechat-article-search）鉴权缺失，调研用降级路径；制作调度的部分 skill 本环境没有时用等价能力替代（frontend-slides、xhs-cover、生图能力等）。</li>
+  </ol>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:12.5px">
+  论文写作Skills系列 · 全项目进度说明 · 生成于 2026-08-17 · 由主 Agent 维护，供接手 Agent（hermes 等）快速接管。
+</footer>
+
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+[
+  {
+    "prompt": "我同时做三个研究方向可以吗，导师说我太散了",
+    "expected": "should_trigger",
+    "expected_skill": "research-focus-anti-guerrilla",
+    "reason": "直接询问多方向并行的可行性，属于聚焦策略核心场景"
+  },
+  {
+    "prompt": "我的研究太散了，每个都只做了一点，怎么才能聚焦",
+    "expected": "should_trigger",
+    "expected_skill": "research-focus-anti-guerrilla",
+    "reason": "研究分散且寻求聚焦方法，直接匹配该skill"
+  },
+  {
+    "prompt": "感觉每个课题都只做到一半就跳到下一个了，怎么办",
+    "expected": "should_trigger",
+    "expected_skill": "research-focus-anti-guerrilla",
+    "reason": "典型的游击战行为模式，需要聚焦策略干预"
+  },
+  {
+    "prompt": "导师说我的研究方向不够聚焦，论文写得像大杂烩",
+    "expected": "should_trigger",
+    "expected_skill": "research-focus-anti-guerrilla",
+    "reason": "导师反馈指出方向不聚焦问题，应触发该skill"
+  },
+  {
+    "prompt": "我该不该放弃现在这个方向，感觉做不下去了",
+    "expected": "should_trigger",
+    "expected_skill": "research-focus-anti-guerrilla",
+    "reason": "涉及是否放弃当前方向的决策，属于聚焦策略评估"
+  },
+  {
+    "prompt": "帮我找几个适合博士做的研究课题",
+    "expected": "should_not_trigger",
+    "expected_skill": "none",
+    "reason": "属于选题初始探索阶段，应触发v01/v02而非此skill"
+  },
+  {
+    "prompt": "我对好几个方向都感兴趣，不知道怎么选",
+    "expected": "boundary",
+    "expected_skill": "research-focus-anti-guerrilla",
+    "reason": "多个方向选择困难，既涉及聚焦也涉及评估，处于边界"
+  },
+  {
+    "prompt": "博士第一年探索了很多方向，现在第三年了不确定该做哪个",
+    "expected": "boundary",
+    "expected_skill": "research-focus-anti-guerrilla",
+    "reason": "有探索过多导致困惑的背景，但核心需求是选出方向，介于聚焦和选题之间"
+  }
+]

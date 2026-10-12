@@ -1,0 +1,56 @@
+[
+  {
+    "prompt": "博士论文怎么写，完全不知道怎么开始",
+    "expected": "should_trigger",
+    "expected_skill": "thesis-blueprint-planning",
+    "reason": "直接询问博士论文写作方法，应触发毕业论文蓝图制定"
+  },
+  {
+    "prompt": "博士论文的结构应该怎么安排才合理",
+    "expected": "should_trigger",
+    "expected_skill": "thesis-blueprint-planning",
+    "reason": "询问论文结构安排，属于蓝图制定核心场景"
+  },
+  {
+    "prompt": "马上要开题了，我现在应该怎么准备",
+    "expected": "should_trigger",
+    "expected_skill": "thesis-blueprint-planning",
+    "reason": "开题准备属于毕业论文规划的早期阶段"
+  },
+  {
+    "prompt": "我手上有三篇已经发表的论文，怎么把它们串成一篇博士毕业论文",
+    "expected": "should_trigger",
+    "expected_skill": "thesis-blueprint-planning",
+    "reason": "多篇论文整合为毕业论文，属于蓝图制定的核心能力"
+  },
+  {
+    "prompt": "博士论文怎么组织才有逻辑，感觉我的章节之间很割裂",
+    "expected": "should_trigger",
+    "expected_skill": "thesis-blueprint-planning",
+    "reason": "关注论文逻辑组织和章节连贯性，属于结构规划"
+  },
+  {
+    "prompt": "毕业论文框架怎么搭，才能让外审专家觉得有系统性",
+    "expected": "should_trigger",
+    "expected_skill": "thesis-blueprint-planning",
+    "reason": "搭建论文框架是蓝图制定的直接需求"
+  },
+  {
+    "prompt": "这篇会议论文的引言部分怎么写比较好",
+    "expected": "should_not_trigger",
+    "expected_skill": "none",
+    "reason": "单篇论文的引言写作不属于毕业论文整体规划范畴"
+  },
+  {
+    "prompt": "博士第四年了论文还没开始写，怎么办",
+    "expected": "boundary",
+    "expected_skill": "thesis-blueprint-planning",
+    "reason": "虽未直接问怎么写，但隐含了需要制定论文蓝图来推动进度的需求"
+  },
+  {
+    "prompt": "我现在有三篇不相关的论文，能凑成一篇毕业论文吗，要怎么串联",
+    "expected": "boundary",
+    "expected_skill": "thesis-blueprint-planning",
+    "reason": "涉及评估论文关联性和串联策略，介于论文评估和蓝图制定之间"
+  }
+]

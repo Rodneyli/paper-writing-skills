@@ -1,0 +1,50 @@
+[
+  {
+    "prompt": "论文写好了，但我不确定质量够不够投稿，怎么自我评估一下？",
+    "expected": "should_trigger",
+    "expected_skill": "ten-thirty-readability-test",
+    "reason": "投稿前质量自检是10/30检测法的核心触发场景"
+  },
+  {
+    "prompt": "被拒稿了，审稿人说novelty不清楚，但我觉得我已经写得很明白了啊",
+    "expected": "should_trigger",
+    "expected_skill": "ten-thirty-readability-test",
+    "reason": "被拒后反思可读性问题是10/30检测法的典型触发场景"
+  },
+  {
+    "prompt": "怎么知道我的论文够不够清楚？有没有客观的检验标准？",
+    "expected": "should_trigger",
+    "expected_skill": "ten-thirty-readability-test",
+    "reason": "寻求可读性的可量化检验标准，正是10/30检测法的设计目的"
+  },
+  {
+    "prompt": "投稿前想让同事帮忙看看论文，但不知道怎么让他看才有用",
+    "expected": "should_trigger",
+    "expected_skill": "ten-thirty-readability-test",
+    "reason": "需要结构化测试方法，用10/30检测替代随意的'帮忙看看'"
+  },
+  {
+    "prompt": "帮我写一篇会议论文，题目是关于图像分类的",
+    "expected": "should_not_trigger",
+    "expected_skill": "ten-thirty-readability-test",
+    "reason": "这是写作请求而非检测请求，10/30检测法只用于写完后的质量检验"
+  },
+  {
+    "prompt": "论文怎么写？有没有什么写作技巧？",
+    "expected": "should_not_trigger",
+    "expected_skill": "ten-thirty-readability-test",
+    "reason": "询问写作方法而非检测方法，应触发金字塔写作法"
+  },
+  {
+    "prompt": "我改了好几版了，但不知道够不够好，总觉得还能改",
+    "expected": "boundary",
+    "expected_skill": "ten-thirty-readability-test",
+    "reason": "边界模糊：可能需要10/30检测来客观判断，也可能需要金字塔法继续修改"
+  },
+  {
+    "prompt": "同事说我的论文读起来很费劲，但我觉得写的挺清楚的啊",
+    "expected": "boundary",
+    "expected_skill": "ten-thirty-readability-test",
+    "reason": "边界模糊：外部反馈模糊，需10/30结构化定位问题，根源可能在结构需金字塔法修复"
+  }
+]
